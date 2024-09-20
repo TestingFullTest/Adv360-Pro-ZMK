@@ -15,8 +15,8 @@ all:
 	$(shell bin/get_version.sh >> /dev/null)
 	$(DOCKER) build --tag zmk --file Dockerfile .
 	$(DOCKER) run --rm -it --name zmk \
-		-v $(PWD)/firmware:/app/firmware$(SELINUX1) \
-		-v $(PWD)/config:/app/config:ro$(SELINUX2) \
+		-v ./firmware:/app/firmware$(SELINUX1) \
+		-v ./config:/app/config:ro$(SELINUX2) \
 		-e TIMESTAMP=$(TIMESTAMP) \
 		-e COMMIT=$(COMMIT) \
 		-e BUILD_RIGHT=true \
@@ -27,8 +27,8 @@ left:
 	$(shell bin/get_version.sh >> /dev/null)
 	$(DOCKER) build --tag zmk --file Dockerfile .
 	$(DOCKER) run --rm -it --name zmk \
-		-v $(PWD)/firmware:/app/firmware$(SELINUX1) \
-		-v $(PWD)/config:/app/config:ro$(SELINUX2) \
+		-v ./firmware:/app/firmware$(SELINUX1) \
+		-v ./config:/app/config:ro$(SELINUX2) \
 		-e TIMESTAMP=$(TIMESTAMP) \
 		-e COMMIT=$(COMMIT) \
 		-e BUILD_RIGHT=false \
